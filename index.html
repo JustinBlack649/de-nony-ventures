@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f1eb">
+  <meta name="description" content="AFF, Atmosphere For Favour. A considered collection of everyday finds.">
+  <title>DE-NONY Ventures | Shop Smart. Live Better.</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <div class="announcement"><span>🚚 Fast &amp; reliable delivery</span><span>✦ Quality products, great value</span><span><a href="#contact">☏ Need help? Contact us</a></span><span><a href="#contact" aria-label="WhatsApp">◉</a> <a href="#contact" aria-label="Instagram">◎</a> <a href="#contact" aria-label="TikTok">♪</a></span></div>
+    <header class="nav-wrap">
+      <a class="brand" href="#home" aria-label="DE-NONY Ventures home"><span class="brand-mark">D</span><span class="brand-sub">DE-NONY<br>Ventures</span></a>
+      <nav class="nav-links"><a href="#home">Home</a><a href="#shop">Shop</a><details class="goods-menu"><summary>GOODS</summary><div class="goods-dropdown"><a href="#shop" data-jump-category="Clothes">♧ Clothes</a><a href="#shop" data-jump-category="Accessories">◇ Accessories</a><a href="#shop" data-jump-category="Cosmetics">♙ Cosmetics</a><a href="#shop" data-jump-category="Appliances">▣ Appliances</a></div></details><a href="#aff">AFF⌄</a><a href="#about">About Us</a><a href="#contact">Contact</a></nav>
+      <div class="account-links"><a class="account-link" href="#login" data-auth="login">LOG IN</a><a class="account-link filled" href="#register" data-auth="register">REGISTER</a><button class="cart-button" id="openCart" aria-label="Open shopping bag">🛒 <span class="cart-count" id="cartCount">0</span></button><a href="#login" data-auth="login" aria-label="Customer account">♟</a></div>
+    </header>
+
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">DE-NONY Ventures · Your everyday marketplace</div>
+        <h1>Everything<br>you need,<br><em>in one place.</em></h1>
+        <p class="hero-copy">Welcome to DE-NONY Ventures. Explore a growing selection of clothes, accessories, cosmetics and appliances, alongside our featured AFF customized collection.</p>
+        <a class="primary-link" href="#shop">Explore our goods <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-label="DE-NONY shopping bag artwork"><div class="art-object"></div><div class="art-stamp">Shop Smart. Live Better.</div></div>
+    </section>
+
+    <section class="category-strip" aria-label="Shop by category"><button class="category-tile" data-category-jump="Clothes"><span>♧</span> Clothes</button><button class="category-tile" data-category-jump="Accessories"><span>◇</span> Accessories</button><button class="category-tile" data-category-jump="Cosmetics"><span>♙</span> Cosmetics</button><button class="category-tile" data-category-jump="Appliances"><span>▣</span> Appliances</button><a class="category-tile aff-tile" href="#aff"><span>❧</span> AFF Collection →</a></section>
+
+    <section class="shop" id="shop">
+      <div class="section-head"><div><div class="eyebrow">DE-NONY marketplace</div><h2>Browse our goods</h2></div><div class="section-note">Clothes, accessories, cosmetics and appliances.</div></div>
+      <div class="shop-tools">
+        <div class="filters" id="filters">
+          <button class="filter active" data-category="All">All goods</button>
+          <button class="filter" data-category="Clothes">Clothes</button>
+          <button class="filter" data-category="Accessories">Accessories</button>
+          <button class="filter" data-category="Cosmetics">Cosmetics</button>
+          <button class="filter" data-category="Appliances">Appliances</button>
+        </div>
+        <input class="search" id="search" type="search" placeholder="Search the collection..." aria-label="Search products">
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="aff-page" id="aff">
+      <div class="aff-inner">
+        <div class="aff-banner"><div class="aff-brand-panel"><strong>❧ AFF</strong><small>Atmosphere For Favour</small><em>Premium Products.<br>A Favourable Experience.</em></div><div class="aff-showcase"><div class="aff-mini"><div class="aff-pack pack-rice"><div class="aff-pack-label">AFF RICE<small>PREMIUM</small></div></div>Rice</div><div class="aff-mini"><div class="aff-pack pack-perfume"><div class="aff-pack-label">AFF<small>EAU DE PARFUM</small></div></div>Perfumes</div><div class="aff-mini"><div class="aff-pack pack-bodywash"><div class="aff-pack-label">AFF<small>BODY WASH</small></div></div>Body wash</div><div class="aff-mini"><div class="aff-pack pack-wine"><div class="aff-pack-label">AFF<small>WINE</small></div></div>Wines</div><div class="aff-mini"><div class="aff-pack pack-water"><div class="aff-pack-label">AFF<small>PURE WATER</small></div></div>Water</div></div><div class="aff-promise"><strong>More Than a Brand...</strong><p>✓ Premium quality<br>✓ Thoughtfully presented<br>✓ Made for you</p><a href="#aff-products">Explore AFF →</a></div></div>
+        <div class="eyebrow">A DE-NONY Ventures featured brand</div>
+        <h2>AFF · Atmosphere For Favour</h2>
+        <p class="aff-intro">Meet AFF, our customized products collection. Discover branded everyday essentials, including rice, perfumes, body wash, wines and bottled water, presented with the AFF identity.</p>
+        <div class="product-grid" id="aff-products"><div class="product-grid" id="affProductGrid"></div></div>
+      </div>
+    </section>
+
+    <section class="story" id="about"><div class="story-inner"><div class="eyebrow">About DE-NONY Ventures</div><h2>Quality finds.<br>Thoughtful choices.</h2><p>DE-NONY Ventures brings different everyday goods together in one convenient place, while giving AFF, Atmosphere For Favour, a dedicated space to showcase its customized products.</p></div></section>
+    <section class="auth-area" id="register"><div class="auth-card"><div class="eyebrow">DE-NONY Ventures account</div><h2>Create account</h2><p class="auth-copy">Register to get started with DE-NONY Ventures.</p><form class="auth-form" id="registerForm"><label>Full name<input name="name" type="text" autocomplete="name" placeholder="Enter your full name" required minlength="2"></label><label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" placeholder="e.g. 08012345678" required></label><label>Password<input name="password" type="password" autocomplete="new-password" placeholder="Create a password" required minlength="8"></label><label>Confirm password<input name="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter your password" required minlength="8"></label><div class="auth-message" id="registerMessage" role="status"></div><button class="auth-submit" type="submit">Create account</button></form><p class="auth-switch">Already registered? <button type="button" data-auth="login">Log in</button></p><div class="demo-note">Preview only: account details are not sent to a server or saved. Secure account creation will require a backend.</div></div></section>
+    <section class="auth-area" id="login"><div class="auth-card"><div class="eyebrow">Welcome back</div><h2>Log in</h2><p class="auth-copy">Enter your email and password to continue.</p><form class="auth-form" id="loginForm"><label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label><label>Password<input name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required></label><div class="auth-message" id="loginMessage" role="status"></div><button class="auth-submit" type="submit">Log in</button></form><p class="auth-switch">New to DE-NONY Ventures? <button type="button" data-auth="register">Create an account</button></p><div class="demo-note">Preview only: login is a visual prototype until a secure authentication backend is connected.</div></div></section>
+    <footer id="contact"><div class="footer-brand">DE-NONY</div><div>VENTURES · FEATURING AFF</div><div class="footer-actions"><a href="#contact" aria-label="WhatsApp">◉</a><a href="#contact" aria-label="Instagram">◎</a><a href="#contact" aria-label="TikTok">♪</a></div><div>© <span id="year"></span> DE-NONY VENTURES. ALL RIGHTS RESERVED.</div></footer>
+  </main>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-panel" id="cartPanel" aria-label="Shopping bag" aria-hidden="true">
+    <div class="cart-head"><h3>Your bag</h3><button class="close-cart" id="closeCart" aria-label="Close bag">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-bottom"><div class="total-line"><span>Subtotal</span><strong id="cartTotal">₦0</strong></div><button class="checkout" id="checkout">Continue to order ↗</button></div>
+  </aside>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>
