@@ -40,12 +40,6 @@ function showAuthPage(page) {
     section.classList.toggle("active", section.id === page);
   });
 
-document.getElementById("authHomeLink").addEventListener("click", event => {
-  event.preventDefault();
-  history.replaceState(null, "", location.pathname + location.search);
-  showAuthPage("");
-});
-
   document.querySelectorAll(".app > section:not(.auth-area), .app > footer")
     .forEach(section => section.style.display = page ? "none" : "");
 
@@ -58,6 +52,12 @@ document.getElementById("authHomeLink").addEventListener("click", event => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
+
+document.getElementById("authHomeLink").addEventListener("click", event => {
+  event.preventDefault();
+  history.replaceState(null, "", location.pathname + location.search);
+  showAuthPage("");
+});
 
 document.querySelectorAll("[data-auth]").forEach(control => {
   control.addEventListener("click", event => {
@@ -225,6 +225,9 @@ function closeCart() {
 document.getElementById("openCart").addEventListener("click", openCart);
 document.getElementById("closeCart").addEventListener("click", closeCart);
 overlay.addEventListener("click", closeCart);
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeCart();
+});
 
 document.getElementById("filters").addEventListener("click", event => {
   const button = event.target.closest("button[data-category]");

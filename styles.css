@@ -279,3 +279,30 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
 .auth-home-link.active {
   display: block;
 }
+
+/* Final mobile polish: keep the hero artwork labels distinct and the header tidy. */
+.hero-art:after {
+  content: "DE-NONY";
+  font-family: var(--site-font-body);
+  font-size: 12px;
+  font-weight: 800;
+  color: #073b28;
+  letter-spacing: .14em;
+  right: 6%;
+  bottom: 6%;
+}
+@media (max-width: 760px) {
+  .art-stamp {
+    left: 6%;
+    top: 7%;
+    bottom: auto;
+    font-size: 12px;
+  }
+  .hero-art:after {
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+  .account-links > a[aria-label="Customer account"] {
+    display: none;
+  }
+}
