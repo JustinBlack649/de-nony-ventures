@@ -265,3 +265,17 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
  .auth-card{width:min(100% - 28px,480px);padding:24px 18px;}
  .cart-panel{width:min(100%,420px);}
 }
+
+.auth-home-link {
+  display: none;
+  width: max-content;
+  margin: 24px auto;
+  color: var(--site-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.auth-home-link.active {
+  display: block;
+}

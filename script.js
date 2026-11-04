@@ -34,9 +34,17 @@ const overlay = document.getElementById("overlay");
 const toast = document.getElementById("toast");
 
 function showAuthPage(page) {
+  document.getElementById("authHomeLink")
+    .classList.toggle("active", Boolean(page));
   document.querySelectorAll(".auth-area").forEach(section => {
     section.classList.toggle("active", section.id === page);
   });
+
+document.getElementById("authHomeLink").addEventListener("click", event => {
+  event.preventDefault();
+  history.replaceState(null, "", location.pathname + location.search);
+  showAuthPage("");
+});
 
   document.querySelectorAll(".app > section:not(.auth-area), .app > footer")
     .forEach(section => section.style.display = page ? "none" : "");
