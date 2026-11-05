@@ -66,24 +66,122 @@ document.querySelectorAll("[data-auth]").forEach(control => {
   });
 });
 
-document.getElementById("registerForm").addEventListener("submit", event => {
-  event.preventDefault();
+// Supabase project configuration. The publishable key is intended for browser use.
+const SUPABASE_URL = "https://feakzaogeaftafasvhne.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_xoqCFXxKxXf_-CvYeBhLcw_cQdsD3j8";
 
+if (!window.supabase?.createClient) {
+  throw new Error("Supabase library did not load. Check your internet connection and refresh.");
+}
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+function setAuthMessage(id, message, isError = false) {
+  const element = document.getElementById(id);
+  element.textContent = message;
+  element.style.color = isError ? "#b42318" : "#176b43";
+}
+
+function updateAccountUI(session) {
+  const links = document.querySelector(".account-links");
+  const login = links.querySelector('[data-auth="login"]');
+  const register = links.querySelector('[data-auth="register"]');
+  let status = document.getElementById("accountStatus");
+  let logout = document.getElementById("logoutButton");
+  if (session?.user) {
+    login.style.display = "none";
+    register.style.display = "none";
+    if (!status) {
+      status = document.createElement("span");
+      status.id = "accountStatus";
+      status.className = "account-link";
+      links.prepend(status);
+    }
+    status.textContent = session.user.user_metadata?.full_name || session.user.email || "My account";
+    if (!logout) {
+      logout = document.createElement("button");
+      logout.id = "logoutButton";
+      logout.className = "account-link";
+      logout.type = "button";
+      logout.textContent = "LOG OUT";
+      logout.addEventListener("click", async () => {
+        const { error } = await supabaseClient.auth.signOut();
+        if (error) notify(error.message);
+        else notify("You have logged out.");
+      });
+      links.prepend(logout);
+    }
+  } else {
+    login.style.display = "";
+    register.style.display = "";
+    status?.remove();
+    logout?.remove();
+  }
+}
+
+// Restore an existing session and keep the header in sync with auth changes.
+supabaseClient.auth.getSession().then(({ data, error }) => {
+  if (error) console.error("Could not restore Supabase session:", error.message);
+  updateAccountUI(data?.session || null);
+});
+supabaseClient.auth.onAuthStateChange((_event, session) => updateAccountUI(session));
+
+document.getElementById("registerForm").addEventListener("submit", async event => {
+  event.preventDefault();
   const data = new FormData(event.currentTarget);
   const message = document.getElementById("registerMessage");
-
-  if (data.get("password") !== data.get("confirmPassword")) {
-    message.textContent = "Your passwords do not match.";
+  const password = data.get("password");
+  if (password !== data.get("confirmPassword")) {
+    setAuthMessage("registerMessage", "Your passwords do not match.", true);
     return;
   }
-
-  message.textContent = "Registration form validated. Connect a secure backend to create and save accounts.";
+  const button = event.currentTarget.querySelector("button[type=submit]");
+  button.disabled = true;
+  button.textContent = "Creating account...";
+  setAuthMessage("registerMessage", "Creating your account securely...");
+  try {
+    const { data: result, error } = await supabaseClient.auth.signUp({
+      email: String(data.get("email")).trim(),
+      password,
+      options: { data: { full_name: String(data.get("name")).trim(), phone: String(data.get("phone")).trim() } }
+    });
+    if (error) throw error;
+    if (result.session) {
+      setAuthMessage("registerMessage", "Account created successfully. You are now logged in.");
+      event.currentTarget.reset();
+    } else {
+      setAuthMessage("registerMessage", "Account created. Check your email for a confirmation link before logging in.");
+      event.currentTarget.reset();
+    }
+  } catch (error) {
+    setAuthMessage("registerMessage", error.message || "Unable to create your account. Please try again.", true);
+  } finally {
+    button.disabled = false;
+    button.textContent = "Create account";
+  }
 });
 
-document.getElementById("loginForm").addEventListener("submit", event => {
+document.getElementById("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
-  document.getElementById("loginMessage").textContent =
-    "Login form validated. Connect a secure backend to verify account details.";
+  const data = new FormData(event.currentTarget);
+  const button = event.currentTarget.querySelector("button[type=submit]");
+  button.disabled = true;
+  button.textContent = "Logging in...";
+  setAuthMessage("loginMessage", "Signing you in...");
+  try {
+    const { error } = await supabaseClient.auth.signInWithPassword({
+      email: String(data.get("email")).trim(),
+      password: data.get("password")
+    });
+    if (error) throw error;
+    setAuthMessage("loginMessage", "Login successful. Welcome back!");
+    event.currentTarget.reset();
+    showAuthPage("");
+  } catch (error) {
+    setAuthMessage("loginMessage", error.message || "Unable to log in. Please check your details.", true);
+  } finally {
+    button.disabled = false;
+    button.textContent = "Log in";
+  }
 });
 
 window.addEventListener("hashchange", () => {
