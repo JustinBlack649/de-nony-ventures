@@ -12,14 +12,14 @@
       --site-spacing-scale: 1;
       --site-radius-scale: 1;
       --site-decoration-opacity: 1;
-      --surface: light-dark(#fffdf9, #1d2421);
-      --surface-soft: light-dark(#eee8df, #29322e);
-      --ink-muted: light-dark(#777a72, #b5beb8);
-      --line: light-dark(#e4ddd2, #3b4741);
+      --surface: #fffdf9;
+      --surface-soft: #eee8df;
+      --ink-muted: #777a72;
+      --line: #e4ddd2;
       --shadow: 0 18px 50px rgba(38, 43, 37, .09);
     }
     * { box-sizing: border-box; }
-    html { color-scheme: light dark; scroll-behavior: smooth; }
+    html { color-scheme: light; scroll-behavior: smooth; }
     body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
     button, input { font: inherit; }
     button { cursor: pointer; }
@@ -306,3 +306,14 @@ footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-betw
     display: none;
   }
 }
+
+
+/* ---- Fixes ---- */
+.account-links [hidden] { display: none !important; }
+.account-status { font-size: 11px; font-weight: 700; color: var(--site-primary); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+body.no-scroll { overflow: hidden; }
+.cart-panel:not(.open) { visibility: hidden; }
+.cart-panel { transition: transform .3s, visibility 0s linear .3s; }
+.cart-panel.open { transition: transform .3s; }
+button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible { outline: 2px solid var(--site-secondary); outline-offset: 2px; }
+@media (max-width: 600px) { .account-status { max-width: 80px; font-size: 10px; } }

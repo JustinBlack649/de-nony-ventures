@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5f1eb">
+  <meta name="theme-color" content="#073b28">
+  <meta name="color-scheme" content="light">
+  <meta property="og:title" content="DE-NONY Ventures | Shop Smart. Live Better.">
+  <meta property="og:description" content="Shop clothes, accessories, cosmetics, appliances and the AFF collection at DE-NONY Ventures.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23073b28'/%3E%3Ctext x='32' y='44' font-size='38' text-anchor='middle' font-family='Georgia,serif' font-weight='700' fill='%23e8bd55'%3ED%3C/text%3E%3C/svg%3E">
   <meta name="description" content="Shop clothes, accessories, cosmetics, appliances and the AFF collection at DE-NONY Ventures.">
   <title>DE-NONY Ventures | Shop Smart. Live Better.</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app">
-    <div class="announcement"><span>🚚 Fast &amp; reliable delivery</span><span>✦ Quality products, great value</span><span><a href="#contact">☏ Need help? Contact us</a></span><span><a href="#contact" aria-label="WhatsApp">◉</a> <a href="#contact" aria-label="Instagram">◎</a> <a href="#contact" aria-label="TikTok">♪</a></span></div>
+  <div class="app">
+    <div class="announcement"><span>🚚 Fast &amp; reliable delivery</span><span>✦ Quality products, great value</span><span><a href="#contact">☏ Need help? Contact us</a></span><span><a href="#contact" aria-label="WhatsApp" data-social="whatsapp">◉</a> <a href="#contact" aria-label="Instagram" data-social="instagram">◎</a> <a href="#contact" aria-label="TikTok" data-social="tiktok">♪</a></span></div>
     <header class="nav-wrap">
       <a class="brand" href="#home" aria-label="DE-NONY Ventures home"><span class="brand-mark">D</span><span class="brand-sub">DE-NONY<br>Ventures</span></a>
       <nav class="nav-links"><a href="#home">Home</a><a href="#shop">Shop</a><details class="goods-menu"><summary>GOODS</summary><div class="goods-dropdown"><a href="#shop" data-jump-category="Clothes">♧ Clothes</a><a href="#shop" data-jump-category="Accessories">◇ Accessories</a><a href="#shop" data-jump-category="Cosmetics">♙ Cosmetics</a><a href="#shop" data-jump-category="Appliances">▣ Appliances</a></div></details><a href="#aff">AFF⌄</a><a href="#about">About Us</a><a href="#contact">Contact</a></nav>
@@ -60,11 +65,11 @@
 </a>
     <section class="auth-area" id="register"><div class="auth-card"><div class="eyebrow">DE-NONY Ventures account</div><h2>Create account</h2><p class="auth-copy">Register to get started with DE-NONY Ventures.</p><form class="auth-form" id="registerForm"><label>Full name<input name="name" type="text" autocomplete="name" placeholder="Enter your full name" required minlength="2"></label><label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" placeholder="e.g. 08012345678" required></label><label>Password<input name="password" type="password" autocomplete="new-password" placeholder="Create a password" required minlength="8"></label><label>Confirm password<input name="confirmPassword" type="password" autocomplete="new-password" placeholder="Re-enter your password" required minlength="8"></label><div class="auth-message" id="registerMessage" role="status"></div><button class="auth-submit" type="submit">Create account</button></form><p class="auth-switch">Already registered? <button type="button" data-auth="login">Log in</button></p><div class="demo-note">Your account is created securely with Supabase. If email confirmation is enabled, confirm your email before logging in.</div></div></section>
     <section class="auth-area" id="login"><div class="auth-card"><div class="eyebrow">Welcome back</div><h2>Log in</h2><p class="auth-copy">Enter your email and password to continue.</p><form class="auth-form" id="loginForm"><label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label><label>Password<input name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required></label><div class="auth-message" id="loginMessage" role="status"></div><button class="auth-submit" type="submit">Log in</button></form><p class="auth-switch">New to DE-NONY Ventures? <button type="button" data-auth="register">Create an account</button></p><div class="demo-note">Sign in with the email address and password you used when creating your account.</div></div></section>
-    <footer id="contact"><div class="footer-brand">DE-NONY</div><div>VENTURES · FEATURING AFF</div><div class="footer-actions"><a href="#contact" aria-label="WhatsApp">◉</a><a href="#contact" aria-label="Instagram">◎</a><a href="#contact" aria-label="TikTok">♪</a></div><div>© <span id="year"></span> DE-NONY VENTURES. ALL RIGHTS RESERVED.</div></footer>
-  </main>
+    <footer id="contact"><div class="footer-brand">DE-NONY</div><div>VENTURES · FEATURING AFF</div><div class="footer-actions"><a href="#contact" aria-label="WhatsApp" data-social="whatsapp">◉</a><a href="#contact" aria-label="Instagram" data-social="instagram">◎</a><a href="#contact" aria-label="TikTok" data-social="tiktok">♪</a></div><div>© <span id="year"></span> DE-NONY VENTURES. ALL RIGHTS RESERVED.</div></footer>
+  </div>
 
   <div class="overlay" id="overlay"></div>
-  <aside class="cart-panel" id="cartPanel" aria-label="Shopping bag" aria-hidden="true">
+  <aside class="cart-panel" id="cartPanel" aria-label="Shopping bag" aria-hidden="true" inert>
     <div class="cart-head"><h3>Your bag</h3><button class="close-cart" id="closeCart" aria-label="Close bag">×</button></div>
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-bottom"><div class="total-line"><span>Subtotal</span><strong id="cartTotal">₦0</strong></div><button class="checkout" id="checkout">Continue to order ↗</button></div>
