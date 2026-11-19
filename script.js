@@ -69,7 +69,6 @@ document.querySelectorAll("[data-auth]").forEach(control => {
 // Supabase project configuration. The publishable key is intended for browser use.
 const SUPABASE_URL = "https://feakzaogeaftafasvhne.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_xoqCFXxKxXf_-CvYeBhLcw_cQdsD3j8";
-const AUTH_REDIRECT_URL = "https://de-nony-ventures.vercel.app/";
 
 if (!window.supabase?.createClient) {
   throw new Error("Supabase library did not load. Check your internet connection and refresh.");
@@ -128,7 +127,8 @@ supabaseClient.auth.onAuthStateChange((_event, session) => updateAccountUI(sessi
 
 document.getElementById("registerForm").addEventListener("submit", async event => {
   event.preventDefault();
-  const data = new FormData(event.currentTarget);
+  const form = event.currentTarget;
+  const data = new FormData(form);
   const message = document.getElementById("registerMessage");
   const password = data.get("password");
   if (password !== data.get("confirmPassword")) {
@@ -143,18 +143,15 @@ document.getElementById("registerForm").addEventListener("submit", async event =
     const { data: result, error } = await supabaseClient.auth.signUp({
       email: String(data.get("email")).trim(),
       password,
-      options: {
-        data: { full_name: String(data.get("name")).trim(), phone: String(data.get("phone")).trim() },
-        emailRedirectTo: AUTH_REDIRECT_URL
-      }
+      options: { data: { full_name: String(data.get("name")).trim(), phone: String(data.get("phone")).trim() } }
     });
     if (error) throw error;
     if (result.session) {
       setAuthMessage("registerMessage", "Account created successfully. You are now logged in.");
-      event.currentTarget.reset();
+      form.reset();
     } else {
       setAuthMessage("registerMessage", "Account created. Check your email for a confirmation link before logging in.");
-      event.currentTarget.reset();
+      form.reset();
     }
   } catch (error) {
     setAuthMessage("registerMessage", error.message || "Unable to create your account. Please try again.", true);
@@ -164,38 +161,11 @@ document.getElementById("registerForm").addEventListener("submit", async event =
   }
 });
 
-document.getElementById("resendConfirmationButton").addEventListener("click", async () => {
-  const email = String(document.querySelector('#loginForm input[name="email"]').value || "").trim();
-  if (!email) {
-    setAuthMessage("loginMessage", "Enter your email address first, then request a new confirmation email.", true);
-    return;
-  }
-
-  const button = document.getElementById("resendConfirmationButton");
-  button.disabled = true;
-  button.textContent = "Sending...";
-  setAuthMessage("loginMessage", "Requesting a fresh confirmation email...");
-
-  try {
-    const { error } = await supabaseClient.auth.resend({
-      type: "signup",
-      email,
-      options: { emailRedirectTo: AUTH_REDIRECT_URL }
-    });
-    if (error) throw error;
-    setAuthMessage("loginMessage", "If this account still needs confirmation, a new email has been sent. Check your inbox and spam folder.");
-  } catch (error) {
-    setAuthMessage("loginMessage", error.message || "Could not resend the confirmation email. Please try again.", true);
-  } finally {
-    button.disabled = false;
-    button.textContent = "Resend confirmation email";
-  }
-});
-
 document.getElementById("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  const button = event.currentTarget.querySelector("button[type=submit]");
+  const form = event.currentTarget;
+  const data = new FormData(form);
+  const button = form.querySelector("button[type=submit]");
   button.disabled = true;
   button.textContent = "Logging in...";
   setAuthMessage("loginMessage", "Signing you in...");
@@ -206,7 +176,8 @@ document.getElementById("loginForm").addEventListener("submit", async event => {
     });
     if (error) throw error;
     setAuthMessage("loginMessage", "Login successful. Welcome back!");
-    event.currentTarget.reset();
+    form.reset();
+    history.replaceState(null, "", location.pathname + location.search);
     showAuthPage("");
   } catch (error) {
     setAuthMessage("loginMessage", error.message || "Unable to log in. Please check your details.", true);
