@@ -6,7 +6,7 @@
 
 // WhatsApp number in international format, digits only (no + or spaces).
 // Example for Nigeria: "2348012345678"
-const WHATSAPP_NUMBER = "2348000000000";
+const WHATSAPP_NUMBER = "2348033979409";
 
 // Optional social links. Leave "" to keep the icon pointing at the footer.
 const SOCIAL_LINKS = {
