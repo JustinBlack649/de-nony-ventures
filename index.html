@@ -74,6 +74,12 @@
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-bottom"><div class="total-line"><span>Subtotal</span><strong id="cartTotal">₦0</strong></div><button class="checkout" id="checkout">Continue to order ↗</button></div>
   </aside>
+  <div class="pd-backdrop" id="productModal" hidden>
+    <div class="pd-dialog" role="dialog" aria-modal="true" aria-labelledby="pdTitle">
+      <button class="pd-close" id="pdClose" type="button" aria-label="Close product details">×</button>
+      <div class="pd-body" id="pdBody"></div>
+    </div>
+  </div>
   <div class="toast" id="toast" role="status"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js" defer></script>
