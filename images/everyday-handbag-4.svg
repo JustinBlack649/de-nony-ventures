@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200"><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7f0e4"/><stop offset="1" stop-color="#eee0c8"/></linearGradient><filter id="blur" x="-30%" y="-300%" width="160%" height="700%"><feGaussianBlur stdDeviation="16"/></filter></defs><rect width="1200" height="1200" fill="url(#bg)"/><circle cx="860" cy="360" r="250" fill="#ead9bc" opacity=".8"/><rect x="0" y="900" width="1200" height="300" fill="#d5c5ab" opacity=".55"/><ellipse cx="930" cy="1010" rx="110" ry="16" fill="#1b1b1b" opacity=".18" filter="url(#blur)"/>
+<g transform="translate(930,900)">
+  <rect x="-60" y="-10" width="120" height="120" rx="16" fill="#efe5d6"/>
+  <rect x="-60" y="-10" width="120" height="22" rx="10" fill="#e2d4bf"/>
+  <g fill="#6d9475">
+    <ellipse cx="-30" cy="-120" rx="30" ry="100" transform="rotate(-28 -30 -20)"/>
+    <ellipse cx="6" cy="-150" rx="30" ry="120" transform="rotate(4 6 -20)"/>
+    <ellipse cx="44" cy="-110" rx="28" ry="94" transform="rotate(30 44 -20)"/>
+  </g>
+</g>
+<ellipse cx="450" cy="905.6500000000001" rx="277.5" ry="24.974999999999998" fill="#1b1b1b" opacity=".22" filter="url(#blur)"/><g transform="translate(450 647.6) scale(0.925)">
+<defs>
+  <linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c7915a"/><stop offset="1" stop-color="#8d5a30"/></linearGradient>
+  <linearGradient id="pg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b47a46"/><stop offset="1" stop-color="#7d4d28"/></linearGradient>
+</defs>
+<path d="M-132,-62 Q-132,-250 0,-250 Q132,-250 132,-62" stroke="#7a4b27" stroke-width="28" fill="none" stroke-linecap="round"/>
+<path d="M-262,-62 L262,-62 L304,226 Q306,262 270,262 L-270,262 Q-306,262 -304,226 Z" fill="url(#pg1)"/>
+<path d="M-262,-62 L262,-62 L242,60 Q0,136 -242,60 Z" fill="url(#pg2)"/>
+<path d="M-242,60 Q0,136 242,60" stroke="#6a3f1f" stroke-width="5" fill="none" opacity=".6"/>
+<path d="M-230,34 Q0,108 230,34" stroke="#f0d3ad" stroke-width="3" stroke-dasharray="10 9" fill="none" opacity=".8"/>
+<path d="M-266,-46 L266,-46" stroke="#e8c79a" stroke-width="3" stroke-dasharray="10 9" opacity=".7"/>
+<circle cx="0" cy="84" r="26" fill="#d6a536" stroke="#a97d1f" stroke-width="5"/>
+<circle cx="0" cy="84" r="9" fill="#a97d1f"/>
+<path d="M-270,200 Q0,246 270,200" stroke="#6a3f1f" stroke-width="4" fill="none" opacity=".4"/>
+</g></svg>

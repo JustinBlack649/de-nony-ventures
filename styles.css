@@ -35,7 +35,7 @@
     .goods-menu { position: relative; }
     .goods-menu summary { list-style: none; cursor: pointer; color: var(--site-on-background); font-size: 12px; letter-spacing: .08em; }
     .goods-menu summary::-webkit-details-marker { display: none; }
-    .goods-menu summary:after { content: "⌄"; margin-left: 7px; }
+    .goods-menu summary { display: inline-flex; align-items: center; gap: 5px; }
     .goods-dropdown { position: absolute; z-index: 5; top: calc(100% + 14px); left: -15px; min-width: 175px; padding: 9px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
     .goods-dropdown a { display: block; padding: 11px 10px; white-space: nowrap; }
     .goods-dropdown a:hover { background: var(--surface-soft); }
@@ -339,7 +339,7 @@ a.product-name:hover { text-decoration: underline; text-underline-offset: 3px; }
 .pd-body { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
 
 .pd-gallery { padding: 20px; background: var(--surface-soft); }
-.pd-stage { position: relative; aspect-ratio: 1 / 1.05; overflow: hidden; background: var(--product-bg, #e6ded2); container-type: inline-size; touch-action: pan-y; }
+.pd-stage { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: var(--product-bg, #e6ded2); container-type: inline-size; touch-action: pan-y; }
 .pd-media, .pd-placeholder { position: absolute; inset: 0; }
 .pd-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pd-placeholder { display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at var(--bx, 30%) var(--by, 25%), rgba(255,255,255,.6), transparent 62%), var(--product-bg, #e6ded2); }
@@ -364,8 +364,8 @@ a.product-name:hover { text-decoration: underline; text-underline-offset: 3px; }
 .pd-price { font-size: 20px; font-weight: 700; margin: 12px 0 4px; }
 .pd-desc p { font-size: 14px; line-height: 1.7; color: var(--ink-muted, #5b655e); margin: 12px 0 0; }
 .pd-points { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 7px; font-size: 13px; }
-.pd-points li { padding-left: 22px; position: relative; }
-.pd-points li:before { content: "✓"; position: absolute; left: 0; color: var(--site-primary); font-weight: 700; }
+.pd-points li { display: flex; align-items: flex-start; gap: 9px; }
+
 
 .pd-variant { border: 0; padding: 0; margin: 22px 0 0; min-width: 0; }
 .pd-variant legend { padding: 0; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
@@ -400,3 +400,98 @@ a.product-name:hover { text-decoration: underline; text-underline-offset: 3px; }
   .pd-info { padding: 22px 18px 28px; }
   .pd-add { padding: 15px 10px; }
 }
+
+
+/* =========================================================
+   Icons (inline SVG sprite: Lucide + Simple Icons brand logos)
+   ========================================================= */
+.icon { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.2em; }
+.icon-sm { width: .9em; height: .9em; }
+
+/* Navbar */
+.nav-icon-link { display: inline-flex; align-items: center; gap: 4px; }
+.goods-dropdown a { display: flex; align-items: center; gap: 10px; }
+.goods-dropdown .icon { width: 16px; height: 16px; color: var(--site-primary); }
+.cart-button .icon { width: 1.25em; height: 1.25em; }
+.account-status { display: inline-flex; align-items: center; gap: 6px; }
+.account-status .icon { width: 18px; height: 18px; color: var(--site-primary); }
+.account-status #accountName { max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.account-links > a[aria-label="Customer account"] { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--site-primary); place-items: center; transition: background .2s, color .2s; }
+.account-links > a[aria-label="Customer account"] .icon { width: 18px; height: 18px; vertical-align: 0; }
+.account-links > a[aria-label="Customer account"]:hover { background: var(--site-primary); color: var(--site-on-primary); }
+@media (min-width: 761px) { .account-links > a[aria-label="Customer account"] { display: grid; } }
+
+/* Announcement bar + footer social links */
+.announcement a { display: inline-flex; align-items: center; gap: 9px; }
+.announcement .icon { width: 16px; height: 16px; vertical-align: 0; }
+.announcement .social-links { gap: 14px; }
+.social-links a, .footer-actions a { display: inline-flex; align-items: center; justify-content: center; opacity: .88; transition: opacity .2s, transform .2s; }
+.social-links a:hover, .footer-actions a:hover { opacity: 1; transform: translateY(-2px); }
+.footer-actions { gap: 20px; }
+.footer-actions .icon { width: 20px; height: 20px; vertical-align: 0; }
+
+/* Category badges: strip, filter pills, card labels */
+.category-tile .icon { width: 1.75em; height: 1.75em; stroke-width: 1.6; vertical-align: 0; }
+.category-tile.aff-tile .icon { width: 1.25em; height: 1.25em; stroke-width: 2; }
+.filter { display: inline-flex; align-items: center; gap: 7px; }
+.filter .icon { width: 14px; height: 14px; vertical-align: 0; }
+.product-category { display: flex; align-items: center; gap: 6px; }
+.product-category .icon { width: 12px; height: 12px; vertical-align: 0; color: var(--site-primary); }
+
+/* Buttons and links that carried text arrows */
+.primary-link .icon { width: 18px; height: 18px; vertical-align: 0; }
+.add-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+.add-button .icon { width: 14px; height: 14px; vertical-align: 0; }
+.checkout { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.checkout .icon { width: 15px; height: 15px; vertical-align: 0; }
+.auth-home-link { align-items: center; gap: 8px; }
+.auth-home-link.active { display: flex; }
+.close-cart { display: grid; place-items: center; width: 36px; height: 36px; padding: 0; cursor: pointer; }
+.close-cart .icon { width: 22px; height: 22px; vertical-align: 0; }
+.qty button { display: grid; place-items: center; padding: 0; cursor: pointer; }
+.qty .icon { width: 12px; height: 12px; vertical-align: 0; }
+.cart-thumb .icon { width: 26px; height: 26px; color: var(--ink-muted); vertical-align: 0; }
+.cart-empty .icon { display: block; width: 34px; height: 34px; margin: 0 auto 12px; opacity: .45; }
+
+/* AFF banner */
+.aff-brand-panel strong .icon { width: .5em; height: .5em; margin-right: 8px; vertical-align: .12em; stroke-width: 1.6; }
+.aff-promise p .icon { width: 1em; height: 1em; color: #edc55f; margin-right: 5px; vertical-align: -.17em; stroke-width: 2.5; }
+.aff-promise a { display: inline-flex; align-items: center; gap: 6px; }
+.aff-promise a .icon { width: 14px; height: 14px; vertical-align: 0; }
+
+/* =========================================================
+   Product cards: square photos with hover zoom
+   (.aspect-square / .object-cover mirror the Tailwind utilities of the same name)
+   ========================================================= */
+.aspect-square { aspect-ratio: 1 / 1; }
+.object-cover { object-fit: cover; }
+.product-visual.aspect-square { aspect-ratio: 1 / 1; }
+.product-visual.aspect-square:before { display: none; }
+.product-visual img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform .7s cubic-bezier(.2, .7, .2, 1); will-change: transform; }
+.product-card:hover .product-visual img,
+.product-card:focus-within .product-visual img { transform: scale(1.09); }
+.product-fallback { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(0, 0, 0, .22); }
+.product-fallback .icon { width: 34%; height: 34%; stroke-width: 1.2; vertical-align: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .product-visual img { transition: none; }
+  .product-card:hover .product-visual img, .product-card:focus-within .product-visual img { transform: none; }
+}
+
+/* =========================================================
+   Product popup icons
+   ========================================================= */
+.pd-close, .pd-nav { display: grid; place-items: center; padding: 0; }
+.pd-close .icon { width: 20px; height: 20px; vertical-align: 0; }
+.pd-nav .icon { width: 22px; height: 22px; vertical-align: 0; }
+.pd-qty button { display: grid; place-items: center; padding: 0; }
+.pd-qty .icon { width: 16px; height: 16px; vertical-align: 0; }
+.pd-add { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.pd-add .icon { width: 15px; height: 15px; vertical-align: 0; }
+.pd-info .eyebrow { display: flex; align-items: center; gap: 7px; }
+.pd-info .eyebrow .icon { width: 14px; height: 14px; vertical-align: 0; }
+.pd-points li .icon { width: 1em; height: 1em; margin-top: .22em; color: var(--site-primary); stroke-width: 2.5; }
+.pd-fallback { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(0, 0, 0, .22); }
+.pd-fallback .icon { width: 30%; height: 30%; stroke-width: 1.2; vertical-align: 0; }
+
+/* Category tiles are links/buttons, not underlined text */
+.category-tile { text-decoration: none; }

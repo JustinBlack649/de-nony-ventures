@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200"><defs><radialGradient id="bg" cx=".32" cy=".26" r="1"><stop offset="0" stop-color="#f6efe8"/><stop offset=".55" stop-color="#e8d8c6"/><stop offset="1" stop-color="#d3c5b4"/></radialGradient><filter id="blur" x="-30%" y="-300%" width="160%" height="700%"><feGaussianBlur stdDeviation="16"/></filter></defs><rect width="1200" height="1200" fill="url(#bg)"/><ellipse cx="600" cy="946.6" rx="242.75999999999996" ry="21.419999999999998" fill="#1b1b1b" opacity=".2" filter="url(#blur)"/><g transform="translate(600 540.2) scale(1.4)">
+<defs>
+  <linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f7d9b8"/><stop offset=".55" stop-color="#fbe9d3"/><stop offset="1" stop-color="#ecc9a2"/></linearGradient>
+</defs>
+<rect x="-132" y="-62" width="264" height="344" rx="54" fill="url(#pg1)"/>
+<rect x="-52" y="-108" width="104" height="58" rx="10" fill="#e9dcc9"/>
+<rect x="-16" y="-178" width="32" height="76" rx="8" fill="#d8c9b3"/>
+<path d="M-78,-192 Q-78,-222 -48,-222 L92,-222 Q146,-222 146,-192 L146,-176 L-48,-176 Q-78,-176 -78,-192 Z" fill="#c9b7a0"/>
+<path d="M72,-210 L146,-200" stroke="#fff" stroke-width="5" opacity=".4" stroke-linecap="round"/>
+<rect x="-100" y="34" width="200" height="150" rx="16" fill="#fffdf8"/>
+<circle cx="0" cy="74" r="20" fill="none" stroke="#073b28" stroke-width="5"/>
+<path d="M0,94 L0,56 M0,76 Q-14,66 -14,56 M0,70 Q14,60 14,50" stroke="#073b28" stroke-width="4" fill="none" stroke-linecap="round"/>
+<rect x="-62" y="112" width="124" height="12" rx="6" fill="#073b28"/>
+<rect x="-42" y="136" width="84" height="9" rx="4.5" fill="#b9ab94"/>
+<path d="M-100,-20 Q-100,-48 -72,-52" stroke="#fff" stroke-width="8" opacity=".5" fill="none" stroke-linecap="round"/>
+</g></svg>

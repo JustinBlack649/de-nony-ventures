@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8d9c8"/><stop offset="1" stop-color="#c1b4a6"/></linearGradient><filter id="blur" x="-30%" y="-300%" width="160%" height="700%"><feGaussianBlur stdDeviation="16"/></filter></defs><rect width="1200" height="1200" fill="url(#bg)"/><circle cx="600" cy="570" r="440" fill="#f6f0e9" opacity=".55"/><circle cx="600" cy="570" r="340" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/><ellipse cx="640" cy="915.8800000000001" rx="331.76000000000005" ry="26.540800000000004" fill="#1b1b1b" opacity=".2" filter="url(#blur)"/><g transform="translate(610 564.408) rotate(-9) scale(1.1440000000000001)">
+<defs>
+  <linearGradient id="pg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3d3ea"/><stop offset="1" stop-color="#7ea8c8"/></linearGradient>
+  <linearGradient id="pg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+</defs>
+<path d="M-130,-250 L-300,-170 L-250,-60 L-190,-95 L-190,270 Q0,292 190,270 L190,-95 L250,-60 L300,-170 L130,-250 Q0,-212 -130,-250 Z" fill="url(#pg1)"/>
+<path d="M-130,-250 L-300,-170 L-250,-60 L-190,-95 L-190,270 Q0,292 190,270 L190,-95 L250,-60 L300,-170 L130,-250 Q0,-212 -130,-250 Z" fill="url(#pg2)"/>
+<path d="M-130,-250 Q-178,-190 -190,-95 M130,-250 Q178,-190 190,-95" stroke="#6b95b6" stroke-width="5" fill="none" opacity=".7"/>
+<path d="M-285,-150 L-236,-72 M285,-150 L236,-72" stroke="#6b95b6" stroke-width="4" fill="none" opacity=".5"/>
+<rect x="-17" y="-218" width="34" height="500" fill="#98bdd8"/>
+<path d="M-17,-218 L-17,282 M17,-218 L17,282" stroke="#6f9bbc" stroke-width="3"/>
+<path d="M-122,-252 L-8,-220 L-58,-146 L-154,-206 Z" fill="#cfe5f4" stroke="#6f9bbc" stroke-width="3" stroke-linejoin="round"/>
+<path d="M122,-252 L8,-220 L58,-146 L154,-206 Z" fill="#c2dcee" stroke="#6f9bbc" stroke-width="3" stroke-linejoin="round"/>
+<g fill="#f2f8fc" stroke="#6f9bbc" stroke-width="3">
+  <circle cx="0" cy="-120" r="9"/><circle cx="0" cy="-40" r="9"/><circle cx="0" cy="40" r="9"/><circle cx="0" cy="120" r="9"/><circle cx="0" cy="200" r="9"/>
+</g>
+<path d="M-152,-38 L-72,-38 L-72,34 L-112,54 L-152,34 Z" fill="none" stroke="#6f9bbc" stroke-width="4" stroke-linejoin="round"/>
+<path d="M-190,260 Q0,282 190,260" stroke="#6f9bbc" stroke-width="4" fill="none"/>
+</g></svg>

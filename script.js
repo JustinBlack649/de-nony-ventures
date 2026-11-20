@@ -11,6 +11,7 @@ const WHATSAPP_NUMBER = "2348000000000";
 // Optional social links. Leave "" to keep the icon pointing at the footer.
 const SOCIAL_LINKS = {
   instagram: "", // e.g. "https://instagram.com/yourhandle"
+  twitter: "",   // X (Twitter), e.g. "https://x.com/yourhandle"
   tiktok: ""     // e.g. "https://tiktok.com/@yourhandle"
 };
 
@@ -24,102 +25,108 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_xoqCFXxKxXf_-CvYeBhLcw_cQdsD3j8
    slug         Used in the product link:  yoursite.com/#product/<slug>
    description  Array of paragraphs shown in the product popup.
    highlights   Short bullet points shown under the description.
-   images       Your real photos, e.g. ["images/everyday-shirt-1.jpg", "images/everyday-shirt-2.jpg"]
-                or [{ src: "images/x.jpg", alt: "Front view" }]. Put the files in an /images folder.
-                Leave [] and the popup shows 4 placeholder views built from the product emoji.
+   images       The shop products use shots("slug", "Name"), which loads images/<slug>-1.svg to -4.svg
+                (clean placeholder artwork). To use your own photos, either overwrite those files
+                (keep the file names), or list your own, e.g.
+                ["images/everyday-shirt-1.jpg", "images/everyday-shirt-2.jpg"]
+                or [{ src: "images/x.jpg", alt: "Front view" }]. Square photos (1:1) look best.
    variants     Required choices the shopper must make before "Add to bag" unlocks.
                 { label: "Size", noun: "size", options: ["S", "M", "L"] }
                 Leave [] for products with nothing to choose.
 */
+const SHOT_LABELS = ["front view", "close-up", "angled view", "styled detail"];
+const shots = (slug, name) =>
+  SHOT_LABELS.map((label, i) => ({ src: `images/${slug}-${i + 1}.svg`, alt: `${name} - ${label}` }));
+
 const products = [
   {
     id: 1, slug: "everyday-shirt", name: "Everyday Shirt", category: "Clothes", price: 12500,
-    symbol: "👕", tag: "Clothing", bg: "#e8d9c8",
+    tag: "Clothing", bg: "#e8d9c8",
     description: [
       "A relaxed, easy-to-style shirt made for daily wear. Clean lines and a comfortable fit make it simple to dress up with trousers or keep casual with your favourite jeans.",
       "Choose your size below and add it to your bag. Not sure which size to pick? Message us and we'll help you decide."
     ],
     highlights: ["Comfortable everyday fit", "Easy to pair with trousers or jeans", "Available in S, M, L and XL"],
-    images: [],
+    images: shots("everyday-shirt", "Everyday Shirt"),
     variants: [{ label: "Size", noun: "size", options: ["S", "M", "L", "XL"] }]
   },
   {
     id: 2, slug: "classic-sneakers", name: "Classic Sneakers", category: "Clothes", price: 28000,
-    symbol: "👟", tag: "Popular", bg: "#d9e0d8",
+    tag: "Popular", bg: "#d9e0d8",
     description: [
       "Classic low-profile sneakers that go with almost everything in your wardrobe. A timeless look that works for errands, work-from-anywhere days and weekends out.",
       "Sizes are in EU sizing. Pick your size below to add them to your bag."
     ],
     highlights: ["Versatile, classic styling", "Comfortable for all-day wear", "EU sizes 40 to 45"],
-    images: [],
+    images: shots("classic-sneakers", "Classic Sneakers"),
     variants: [{ label: "Shoe size (EU)", noun: "shoe size", options: ["40", "41", "42", "43", "44", "45"] }]
   },
   {
     id: 3, slug: "the-daily-shades", name: "The Daily Shades", category: "Accessories", price: 15000,
-    symbol: "🕶️", tag: "", bg: "#e5d9d3",
+    tag: "", bg: "#e5d9d3",
     description: [
       "Everyday sunglasses to keep the glare down and the style up. A simple, flattering shape that works with casual and smart outfits alike.",
       "A good grab-and-go accessory for the commute, the beach or a sunny weekend."
     ],
     highlights: ["Simple, flattering frame shape", "Suits casual and smart outfits"],
-    images: [], variants: []
+    images: shots("the-daily-shades", "The Daily Shades"), variants: []
   },
   {
     id: 4, slug: "everyday-handbag", name: "Everyday Handbag", category: "Accessories", price: 18500,
-    symbol: "👜", tag: "Bestseller", bg: "#e6dfc9",
+    tag: "Bestseller", bg: "#e6dfc9",
     description: [
       "A practical handbag with room for your daily essentials. Easy to carry, easy to match, and neat enough to take from the office to dinner.",
       "One of our bestsellers for a reason: it simply works with everything."
     ],
     highlights: ["Room for daily essentials", "Easy to match with any outfit", "Bestseller"],
-    images: [], variants: []
+    images: shots("everyday-handbag", "Everyday Handbag"), variants: []
   },
   {
     id: 5, slug: "body-lotion", name: "Body Lotion", category: "Cosmetics", price: 8500,
-    symbol: "🧴", tag: "", bg: "#e8d8c6",
+    tag: "", bg: "#e8d8c6",
     description: [
       "A smooth everyday body lotion for a soft, moisturised feel after bathing. Easy to apply and a pleasant part of your daily routine.",
       "Pair it with the Beauty Set for a complete self-care bundle."
     ],
     highlights: ["Smooth, easy application", "Made for daily use"],
-    images: [], variants: []
+    images: shots("body-lotion", "Body Lotion"), variants: []
   },
   {
     id: 6, slug: "beauty-set", name: "Beauty Set", category: "Cosmetics", price: 14500,
-    symbol: "🧼", tag: "New", bg: "#d9d6e2",
+    tag: "New", bg: "#d9d6e2",
     description: [
       "A thoughtfully put-together beauty set for your daily self-care routine. Great as a treat for yourself or as a gift for someone special.",
       "Contact us if you'd like it gift-wrapped or have questions about what's inside."
     ],
     highlights: ["Complete self-care routine", "A great gift idea", "New arrival"],
-    images: [], variants: []
+    images: shots("beauty-set", "Beauty Set"), variants: []
   },
   {
     id: 7, slug: "electric-kettle", name: "Electric Kettle", category: "Appliances", price: 22000,
-    symbol: "🫖", tag: "Home", bg: "#e9dfc7",
+    tag: "Home", bg: "#e9dfc7",
     description: [
       "A convenient electric kettle for quick hot water at home or in the office. Ideal for tea, coffee, noodles and more, with no waiting around.",
       "A practical kitchen upgrade that makes busy mornings easier."
     ],
     highlights: ["Quick, convenient hot water", "Ideal for home or office"],
-    images: [], variants: []
+    images: shots("electric-kettle", "Electric Kettle"), variants: []
   },
   {
     id: 8, slug: "table-fan", name: "Table Fan", category: "Appliances", price: 35000,
-    symbol: "🌀", tag: "", bg: "#d5e1df",
+    tag: "", bg: "#d5e1df",
     description: [
       "A table fan to keep your room fresh and comfortable through the warm days and nights. Compact enough for a desk, bedside or shop counter.",
       "A simple way to stay cool wherever you work and rest."
     ],
     highlights: ["Compact tabletop size", "Keeps rooms fresh and comfortable"],
-    images: [], variants: []
+    images: shots("table-fan", "Table Fan"), variants: []
   }
 ];
 
 const affProducts = [
   {
     id: 101, slug: "aff-branded-rice", name: "AFF Branded Rice", category: "AFF Collection", price: 0,
-    symbol: "🌾", pack: "pack-rice", label: "AFF PREMIUM RICE", detail: "LONG GRAIN · QUALITY", tag: "Customized", bg: "#e8d9c8",
+    pack: "pack-rice", label: "AFF PREMIUM RICE", detail: "LONG GRAIN · QUALITY", tag: "Customized", bg: "#e8d9c8",
     description: [
       "Premium long-grain rice presented under the AFF, Atmosphere For Favour, identity. A quality everyday staple with a favourable experience from pantry to plate.",
       "Packaging shown is a concept. Contact us for availability, pack sizes and pricing."
@@ -128,7 +135,7 @@ const affProducts = [
   },
   {
     id: 102, slug: "aff-perfume", name: "AFF Perfume", category: "AFF Collection", price: 0,
-    symbol: "🧴", pack: "pack-perfume", label: "AFF", detail: "EAU DE PARFUM", tag: "Customized", bg: "#e5d9d3",
+    pack: "pack-perfume", label: "AFF", detail: "EAU DE PARFUM", tag: "Customized", bg: "#e5d9d3",
     description: [
       "An AFF eau de parfum presented in elegant, customized packaging. A thoughtful gift or a signature scent of your own.",
       "Packaging shown is a concept. Contact us for availability and pricing."
@@ -137,7 +144,7 @@ const affProducts = [
   },
   {
     id: 103, slug: "aff-body-wash", name: "AFF Body Wash", category: "AFF Collection", price: 0,
-    symbol: "🫧", pack: "pack-bodywash", label: "AFF BODY WASH", detail: "GENTLE CARE", tag: "Customized", bg: "#d9e0d8",
+    pack: "pack-bodywash", label: "AFF BODY WASH", detail: "GENTLE CARE", tag: "Customized", bg: "#d9e0d8",
     description: [
       "A gentle AFF body wash for a fresh, comfortable daily clean, presented with the AFF identity.",
       "Packaging shown is a concept. Contact us for availability and pricing."
@@ -146,7 +153,7 @@ const affProducts = [
   },
   {
     id: 104, slug: "aff-wines", name: "AFF Wines", category: "AFF Collection", price: 0,
-    symbol: "🍾", pack: "pack-wine", label: "AFF WINE", detail: "RESERVE COLLECTION", tag: "Customized", bg: "#e6dfc9",
+    pack: "pack-wine", label: "AFF WINE", detail: "RESERVE COLLECTION", tag: "Customized", bg: "#e6dfc9",
     description: [
       "The AFF reserve collection of wines, presented in customized AFF packaging. Ideal for gifting, celebrations and special occasions.",
       "Packaging shown is a concept. Contact us for availability and pricing."
@@ -155,7 +162,7 @@ const affProducts = [
   },
   {
     id: 105, slug: "aff-bottled-water", name: "AFF Bottled Water", category: "AFF Collection", price: 0,
-    symbol: "💧", pack: "pack-water", label: "AFF", detail: "PURE WATER", tag: "Customized", bg: "#d5e1df",
+    pack: "pack-water", label: "AFF", detail: "PURE WATER", tag: "Customized", bg: "#d5e1df",
     description: [
       "Pure bottled water with custom AFF branding. A neat choice for events, offices, hospitality and everyday refreshment.",
       "Packaging shown is a concept. Contact us for availability, order quantities and pricing."
@@ -170,6 +177,11 @@ products.push(...affProducts);
 
 const money = value => "₦" + value.toLocaleString("en-NG");
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// Inline SVG icons from the sprite at the top of index.html (Lucide + Simple Icons).
+const icon = (name, cls = "") =>
+  `<svg class="icon${cls ? " " + cls : ""}" aria-hidden="true" focusable="false"><use href="#i-${name}"/></svg>`;
+const CATEGORY_ICONS = { Clothes: "shirt", Accessories: "handbag", Cosmetics: "sparkles", Appliances: "plug-zap", "AFF Collection": "leaf" };
+const categoryIcon = category => icon(CATEGORY_ICONS[category] || "package");
 const slugify = text => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const CART_KEY = "denony_cart_v2";
 const AUTH_PAGES = ["register", "login"];
@@ -327,7 +339,7 @@ function updateAccountUI(session) {
 
   const status = document.getElementById("accountStatus");
   const logout = document.getElementById("logoutButton");
-  status.textContent = user ? (user.user_metadata?.full_name || user.email || "My account") : "";
+  document.getElementById("accountName").textContent = user ? (user.user_metadata?.full_name || user.email || "My account") : "";
   status.hidden = !user;
   logout.hidden = !user;
 }
@@ -438,13 +450,18 @@ document.getElementById("loginForm").addEventListener("submit", async event => {
 
 function cardMedia(p) {
   const first = p.images[0];
-  if (first?.src) return `<img src="${esc(first.src)}" alt="${esc(first.alt)}" loading="lazy">`;
+  if (first?.src) {
+    return `<img class="aspect-square object-cover" src="${esc(first.src)}" alt="${esc(first.alt)}" width="1200" height="1200" loading="lazy" decoding="async">`;
+  }
   if (p.pack) {
     return `<div class="aff-pack ${p.pack}" role="img" aria-label="AFF ${esc(p.name)} packaging concept">
       <div class="aff-pack-label">${p.label}<small>${p.detail}</small></div></div>`;
   }
-  return `<span class="product-symbol" aria-hidden="true">${p.symbol}</span>`;
+  return `<span class="product-fallback" aria-hidden="true">${icon("package")}</span>`;
 }
+
+// Square frame for photos; the AFF packaging concepts keep their taller frame.
+const visualClass = p => "product-visual" + (p.images[0]?.src ? " aspect-square" : "");
 
 function renderProducts() {
   const term = search.value.trim().toLowerCase();
@@ -458,7 +475,7 @@ function renderProducts() {
   grid.innerHTML = visible.length ? visible.map(p => `
     <article class="product-card">
       <a class="product-link" href="#product/${p.slug}" tabindex="-1" aria-hidden="true">
-        <div class="product-visual" style="--product-bg:${p.bg}">
+        <div class="${visualClass(p)}" style="--product-bg:${p.bg}">
           ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
           ${cardMedia(p)}
         </div>
@@ -468,10 +485,10 @@ function renderProducts() {
           <a class="product-link product-name" href="#product/${p.slug}">${p.name}</a>
           <span class="product-price">${money(p.price)}</span>
         </div>
-        <div class="product-category">${p.category}</div>
+        <div class="product-category">${categoryIcon(p.category)}${p.category}</div>
         ${p.variants.length
           ? `<button class="add-button" type="button" data-open="${p.slug}">Select ${p.variants.map(variantNoun).join(" & ")}</button>`
-          : `<button class="add-button" type="button" data-add="${p.id}">Add to bag +</button>`}
+          : `<button class="add-button" type="button" data-add="${p.id}">Add to bag ${icon("plus")}</button>`}
       </div>
     </article>
   `).join("") : `<div class="empty">No products found. Try another search.</div>`;
@@ -481,7 +498,7 @@ function renderAffProducts() {
   affGrid.innerHTML = affProducts.map(p => `
     <article class="product-card">
       <a class="product-link" href="#product/${p.slug}" tabindex="-1" aria-hidden="true">
-        <div class="product-visual" style="--product-bg:${p.bg}">
+        <div class="${visualClass(p)}" style="--product-bg:${p.bg}">
           <span class="tag">${p.tag}</span>
           ${cardMedia(p)}
         </div>
@@ -491,8 +508,8 @@ function renderAffProducts() {
           <a class="product-link product-name" href="#product/${p.slug}">${p.name}</a>
           <span class="product-price">Enquire</span>
         </div>
-        <div class="product-category">${p.category} · Packaging concept</div>
-        <button class="add-button" type="button" data-enquire="${p.id}">Enquire about product ↗</button>
+        <div class="product-category">${categoryIcon(p.category)}${p.category} · Packaging concept</div>
+        <button class="add-button" type="button" data-enquire="${p.id}">Enquire about product ${icon("arrow-up-right")}</button>
       </div>
     </article>
   `).join("");
@@ -544,7 +561,7 @@ function mediaMarkup(p, item) {
   const v = item.view;
   const figure = p.pack
     ? `<div class="aff-pack ${p.pack}"><div class="aff-pack-label">${p.label}<small>${p.detail}</small></div></div>`
-    : `<span class="pd-symbol">${p.symbol}</span>`;
+    : `<span class="pd-fallback">${icon("package")}</span>`;
   return `<div class="pd-placeholder" role="img" aria-label="${esc(item.alt)}"
       style="--s:${v.s};--r:${v.r}deg;--bx:${v.bx};--by:${v.by}"><div class="pd-figure">${figure}</div></div>`;
 }
@@ -572,12 +589,12 @@ function renderProductModal(p) {
     </fieldset>`).join("");
 
   const actions = isAff(p)
-    ? `<button class="pd-add" type="button" data-pd-enquire>Enquire about this product ↗</button>`
+    ? `<button class="pd-add" type="button" data-pd-enquire>Enquire about this product ${icon("arrow-up-right")}</button>`
     : `<div class="pd-buy">
          <div class="pd-qty" role="group" aria-label="Quantity">
-           <button type="button" data-pd-qty="-1" aria-label="Decrease quantity">−</button>
+           <button type="button" data-pd-qty="-1" aria-label="Decrease quantity">${icon("minus")}</button>
            <span id="pdQty" aria-live="polite">1</span>
-           <button type="button" data-pd-qty="1" aria-label="Increase quantity">+</button>
+           <button type="button" data-pd-qty="1" aria-label="Increase quantity">${icon("plus")}</button>
          </div>
          <button class="pd-add" type="button" id="pdAdd" data-pd-add></button>
        </div>
@@ -588,18 +605,18 @@ function renderProductModal(p) {
       <div class="pd-stage" style="--product-bg:${p.bg}">
         <div class="pd-media" id="pdMedia">${mediaMarkup(p, gallery[0])}</div>
         ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
-        <button class="pd-nav pd-prev" type="button" data-slide="-1" aria-label="Previous image">‹</button>
-        <button class="pd-nav pd-next" type="button" data-slide="1" aria-label="Next image">›</button>
+        <button class="pd-nav pd-prev" type="button" data-slide="-1" aria-label="Previous image">${icon("chevron-left")}</button>
+        <button class="pd-nav pd-next" type="button" data-slide="1" aria-label="Next image">${icon("chevron-right")}</button>
         <span class="pd-count" id="pdCount" aria-live="polite">1 / ${gallery.length}</span>
       </div>
       <div class="pd-thumbs" role="group" aria-label="Product images">${thumbs}</div>
     </div>
     <div class="pd-info">
-      <div class="eyebrow">${esc(p.category)}</div>
+      <div class="eyebrow">${categoryIcon(p.category)}${esc(p.category)}</div>
       <h2 id="pdTitle">${esc(p.name)}</h2>
       <div class="pd-price">${isAff(p) ? "Enquire for pricing" : money(p.price)}</div>
       <div class="pd-desc">${p.description.map(t => `<p>${esc(t)}</p>`).join("")}</div>
-      ${p.highlights.length ? `<ul class="pd-points">${p.highlights.map(h => `<li>${esc(h)}</li>`).join("")}</ul>` : ""}
+      ${p.highlights.length ? `<ul class="pd-points">${p.highlights.map(h => `<li>${icon("check")}<span>${esc(h)}</span></li>`).join("")}</ul>` : ""}
       ${variants}
       ${actions}
     </div>`;
@@ -813,7 +830,7 @@ function renderCart() {
         const p = products.find(x => x.id === item.id);
         const thumb = p.images[0]?.src
           ? `<img src="${esc(p.images[0].src)}" alt="" loading="lazy">`
-          : p.symbol;
+          : icon("package");
         return `
           <div class="cart-row">
             <div class="cart-thumb">${thumb}</div>
@@ -822,16 +839,16 @@ function renderCart() {
               ${p.variants.length ? `<small class="cart-variant">${esc(variantText(p, item))}</small>` : ""}
               <small>${money(p.price)}</small>
               <div class="qty">
-                <button type="button" data-qty="-1" data-key="${esc(item.key)}" aria-label="Decrease quantity">−</button>
+                <button type="button" data-qty="-1" data-key="${esc(item.key)}" aria-label="Decrease quantity">${icon("minus")}</button>
                 <span>${item.qty}</span>
-                <button type="button" data-qty="1" data-key="${esc(item.key)}" aria-label="Increase quantity">+</button>
+                <button type="button" data-qty="1" data-key="${esc(item.key)}" aria-label="Increase quantity">${icon("plus")}</button>
               </div>
             </div>
             <button class="remove" type="button" data-remove="${esc(item.key)}">Remove</button>
           </div>
         `;
       }).join("")
-    : `<div class="cart-empty">Your bag is empty.<br>Add something from the collection.</div>`;
+    : `<div class="cart-empty">${icon("shopping-bag")}Your bag is empty.<br>Add something from the collection.</div>`;
 
   const checkout = document.getElementById("checkout");
   checkout.disabled = !cart.length;
@@ -946,7 +963,7 @@ document.querySelectorAll('[data-social="whatsapp"]').forEach(link => {
   link.target = "_blank";
   link.rel = "noopener";
 });
-["instagram", "tiktok"].forEach(name => {
+["instagram", "twitter", "tiktok"].forEach(name => {
   if (!SOCIAL_LINKS[name]) return;
   document.querySelectorAll(`[data-social="${name}"]`).forEach(link => {
     link.href = SOCIAL_LINKS[name];
